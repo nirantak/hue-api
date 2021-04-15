@@ -4,26 +4,21 @@ import setuptools
 
 ROOT = pathlib.Path(__file__).parent
 README = (ROOT / "README.md").read_text()
-HISTORY = (ROOT / "HISTORY.md").read_text()
-
-requirements = [
-    "Click>=7.0",
-    "httpx",
-    "python-dotenv",
-]
+CHANGELOG = (ROOT / "CHANGELOG.md").read_text()
+REQUIREMENTS = (ROOT / "requirements.txt").read_text().split()
 
 setuptools.setup(
     name="hue-api",
     version="0.1.0",
     description="Async API for controlling Hue Lights",
-    long_description=README + "\n\n" + HISTORY,
+    long_description=README + "\n\n" + CHANGELOG,
     long_description_content_type="text/markdown",
     author="Nirantak Raghav",
     author_email="hey@nirantak.com",
     url="https://github.com/nirantak/hue-api",
     license="MIT",
-    python_requires=">=3.7",
-    install_requires=requirements,
+    python_requires=">=3.9",
+    install_requires=REQUIREMENTS,
     packages=setuptools.find_packages(include=["hue", "hue.*"]),
     include_package_data=True,
     keywords="hue lights async automation",
@@ -33,9 +28,8 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     entry_points={
         "console_scripts": [

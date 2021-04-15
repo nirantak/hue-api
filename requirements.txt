@@ -1,13 +1,3 @@
-black
-bump2version
-Click
-coverage
-flake8
-pip
-pre-commit
-pytest
-rope
-setuptools
-tox
-twine
-wheel
+Click>=7.0
+httpx
+python-dotenv

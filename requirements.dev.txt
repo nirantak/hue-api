@@ -1,0 +1,12 @@
+black
+bump2version
+coverage
+flake8
+pip
+pre-commit
+pytest
+rope
+setuptools
+tox
+twine
+wheel
