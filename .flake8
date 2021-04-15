@@ -8,3 +8,9 @@ verbose = 1
 exclude =
   .git,
   __pycache__,
+  .mypy_cache,
+  .tox,
+  .venv,
+  .vscode,
+  build,
+  dist,

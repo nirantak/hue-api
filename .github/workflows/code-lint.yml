@@ -1,8 +1,10 @@
-name: Upload Python Package
+name: Code Lint
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   deploy:
@@ -17,9 +19,6 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --upgrade setuptools wheel twine
-      - name: Build and Publish
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: make release
+          python -m pip install --upgrade pre-commit
+      - name: Run Linters
+        run: make lint
