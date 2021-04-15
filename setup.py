@@ -9,7 +9,7 @@ REQUIREMENTS = (ROOT / "requirements.txt").read_text().split()
 
 setuptools.setup(
     name="hue-api",
-    version="0.1.0",
+    version="0.1.1",
     description="Async API for controlling Hue Lights",
     long_description=README + "\n\n" + CHANGELOG,
     long_description_content_type="text/markdown",
