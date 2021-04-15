@@ -1,0 +1,10 @@
+[flake8]
+
+count = True
+max-line-length = 100
+statistics = True
+verbose = 1
+
+exclude =
+  .git,
+  __pycache__,
