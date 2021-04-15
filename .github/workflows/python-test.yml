@@ -7,8 +7,10 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
+    environment: Python
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
