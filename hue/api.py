@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 from typing import Any
 
@@ -38,7 +40,8 @@ async def set_state(light: int, state: dict[Any]) -> tuple[bool, dict[Any]]:
     async with httpx.AsyncClient() as client:
         data = {"on": bool(state.get("on"))}
         for i in ["bri", "hue", "sat", "xy", "ct"]:
-            if s := state.get(i):
+            s = state.get(i)
+            if s:
                 data[i] = s
 
         resp = await client.put(f"{HUE_API}/lights/{light}/state", json=data)
