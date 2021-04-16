@@ -1,59 +1,86 @@
 from __future__ import annotations
 
-import os
 from typing import Any
 
 import httpx
 
-HUE_API: str = (
-    f"http://{os.environ['HUE_BRIDGE_IP']}/api/{os.environ['HUE_BRIDGE_USER']}"
-)
-ORIGINAL_STATE: dict[Any] = {}
+
+class Bridge:
+    def __init__(self: Bridge, ip: str, user: str):
+        self.ip: str = ip
+        self.user: str = user
+        self.info: dict[str, Any] = {}
+
+    @property
+    def url(self) -> str:
+        return f"http://{self.ip}/api/{self.user}"
+
+    @staticmethod
+    async def discover() -> dict[str, str]:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get("https://discovery.meethue.com/")
+            return resp.json()
+
+    async def get_info(self) -> dict[str, str]:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(self.url)
+            self.info = resp.json()
+            return self.info
 
 
-async def switch_on(light: int) -> bool:
-    status, resp = await set_state(light, {"on": True})
-    print(f"Light {light} ON resp: {resp}")
-    return status
+class Light(Bridge):
+    def __init__(self: Light, bridge_ip: str, bridge_user: str, id: int):
+        self.id: int = id
+        self.info: dict[str, Any] = {}
+        self.power: bool = None
+        self.saved_state: dict[str, Any] = {}
+        self.current_state: dict[str, Any] = {}
+        super().__init__(bridge_ip, bridge_user)
 
+    @property
+    def url(self) -> str:
+        return f"{super().url}/lights/{self.id}"
 
-async def switch_off(light: int) -> bool:
-    status, resp = await set_state(light, {"on": False})
-    print(f"Light {light} OFF resp: {resp}")
-    return status
+    async def get_info(self) -> dict[str, Any]:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(self.url)
+            self.info = resp.json()
+            return self.info
 
+    async def get_state(self) -> dict[str, Any]:
+        resp = await self.get_info()
+        self.current_state = resp["state"]
+        self.power = resp["state"]["on"]
+        return self.current_state
 
-async def get_light(light: int) -> dict[Any]:
-    async with httpx.AsyncClient() as client:
-        resp = await client.get(f"{HUE_API}/lights/{light}")
-        resp = resp.json()
-        print(f"Light {light} resp: {resp}")
-        return resp
-
-
-async def get_state(light: int) -> dict[Any]:
-    resp = await get_light(light)
-    return resp["state"]
-
-
-async def set_state(light: int, state: dict[Any]) -> tuple[bool, dict[Any]]:
-    async with httpx.AsyncClient() as client:
+    async def set_state(
+        self, state: dict[str, Any]
+    ) -> tuple[bool, dict[str, Any]]:
         data = {"on": bool(state.get("on"))}
         for i in ["bri", "hue", "sat", "xy", "ct"]:
             s = state.get(i)
             if s:
                 data[i] = s
+        self.power = data["on"]
+        async with httpx.AsyncClient() as client:
+            resp = await client.put(f"{self.url}/state", json=data)
+            return (resp.status_code == httpx.codes.OK, resp.json())
 
-        resp = await client.put(f"{HUE_API}/lights/{light}/state", json=data)
-        print(f"Light {light} resp: {resp.text}")
-        return (resp.status_code == httpx.codes.OK, resp.json())
+    async def save_state(self) -> dict[str, Any]:
+        self.saved_state = await self.get_state()
+        return self.saved_state
 
+    async def restore_state(self) -> dict[str, Any]:
+        state = await self.set_state(self.saved_state)
+        self.power = state["on"]
+        return state
 
-async def save_state(light: int) -> dict[Any]:
-    global ORIGINAL_STATE
-    ORIGINAL_STATE = await get_state(light)
-    return ORIGINAL_STATE
+    async def switch_on(self) -> bool:
+        self.power = True
+        status, _ = await self.set_state(self.id, {"on": True})
+        return status
 
-
-async def restore_state(light: int) -> dict[Any]:
-    return await set_state(light, ORIGINAL_STATE)
+    async def switch_off(self) -> bool:
+        self.power = False
+        status, _ = await self.set_state(self.id, {"on": False})
+        return status
