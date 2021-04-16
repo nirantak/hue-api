@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  tox:
     runs-on: ${{ matrix.os }}
 
     strategy:
