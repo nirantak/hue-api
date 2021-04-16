@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Use Class based API
+- New color methods for conversion between formats
 
 ### Removed
 
