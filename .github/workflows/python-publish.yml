@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    environment: Python
+    environment: prod_release
     runs-on: ubuntu-latest
 
     steps:
