@@ -1,15 +1,16 @@
-import sys
+import os
 
-import click
+import typer
+
+app = typer.Typer()
+HUE_BRIDGE_IP = os.environ.get("HUE_BRIDGE_IP")
+HUE_BRIDGE_USER = os.environ.get("HUE_BRIDGE_USER")
 
 
-@click.command()
-def main(args=None):
-    """Console script for hue"""
-    click.echo("Replace this message by putting your code into " "hue.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
-    return 0
+@app.command()
+def test():
+    typer.echo("Hue CLI - coming soon")
 
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    app()

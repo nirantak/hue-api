@@ -33,7 +33,7 @@ setuptools.setup(
     ],
     entry_points={
         "console_scripts": [
-            "hue=hue.cli:main",
+            "hue=hue.cli:app",
         ],
     },
     project_urls={

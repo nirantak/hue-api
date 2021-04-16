@@ -2,9 +2,6 @@ import os
 from typing import Any
 
 import httpx
-from dotenv import load_dotenv
-
-load_dotenv()
 
 HUE_API: str = (
     f"http://{os.environ['HUE_BRIDGE_IP']}/api/{os.environ['HUE_BRIDGE_USER']}"
