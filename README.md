@@ -8,7 +8,7 @@
 
 This is an async client for interacting with the Hue Bridge API, to control Hue Lights.
 
-The minimum Python version required to run this is 3.9
+The minimum Python version required to run this is 3.7
 
 Install the package using pip:
 
