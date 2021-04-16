@@ -1,6 +1,7 @@
 black
 bump2version
 coverage
+faker
 flake8
 ipython
 pip
