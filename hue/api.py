@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-import httpx
+from hue import http
 
 
 class Bridge:
@@ -17,15 +17,11 @@ class Bridge:
 
     @staticmethod
     async def discover() -> dict[str, str]:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get("https://discovery.meethue.com/")
-            return resp.json()
+        return await http.get_json("https://discovery.meethue.com/")
 
-    async def get_info(self) -> dict[str, str]:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(self.url)
-            self.info = resp.json()
-            return self.info
+    async def get_info(self) -> dict[str, Any]:
+        self.info = await http.get_json(self.url)
+        return self.info
 
 
 class Light(Bridge):
@@ -42,10 +38,8 @@ class Light(Bridge):
         return f"{super().url}/lights/{self.id}"
 
     async def get_info(self) -> dict[str, Any]:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(self.url)
-            self.info = resp.json()
-            return self.info
+        self.info = await http.get_json(self.url)
+        return self.info
 
     async def get_state(self) -> dict[str, Any]:
         resp = await self.get_info()
@@ -62,9 +56,8 @@ class Light(Bridge):
             if s:
                 data[i] = s
         self.power = data["on"]
-        async with httpx.AsyncClient() as client:
-            resp = await client.put(f"{self.url}/state", json=data)
-            return (resp.status_code == httpx.codes.OK, resp.json())
+        resp = await http.put(f"{self.url}/state", data)
+        return (resp.status_code == 200, resp.json())
 
     async def save_state(self) -> dict[str, Any]:
         self.saved_state = await self.get_state()
