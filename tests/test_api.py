@@ -1,6 +1,6 @@
 from faker import Faker
 
-from hue.api import Bridge, Light
+from hue import Bridge, Light
 
 fake = Faker()
 
