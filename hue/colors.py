@@ -15,7 +15,7 @@ GamutA = (
 # Hue A19 bulbs
 GamutB = (
     XYPoint(0.675, 0.322),
-    XYPoint(0.4091, 0.518),
+    XYPoint(0.409, 0.518),
     XYPoint(0.167, 0.04),
 )
 
@@ -241,7 +241,7 @@ class ColorHelper:
         return (r, g, b)
 
 
-class Converter:
+class Color:
     def __init__(self, gamut=GamutB):
         self.color = ColorHelper(gamut)
 

@@ -59,17 +59,15 @@ class Light(Bridge):
         self.on = resp["state"]["on"]
         return self.current_state
 
-    async def set_state(
-        self, state: dict[str, Any]
-    ) -> tuple[bool, dict[str, Any]]:
+    async def set_state(self, state: dict[str, Any]) -> dict[str, Any]:
         data = {"on": bool(state.get("on"))}
-        for i in ["bri", "hue", "sat", "xy", "ct"]:
-            s = state.get(i)
-            if s:
-                data[i] = s
+        for key in ["bri", "hue", "sat", "xy", "ct"]:
+            value = state.get(key)
+            if value:
+                data[key] = value
         self.on = data["on"]
         resp = await http.put(f"{self.url}/state", data)
-        return (resp.status_code == 200, resp.json())
+        return resp.json()
 
     async def save_state(self) -> dict[str, Any]:
         self.saved_state = await self.get_state()
@@ -80,12 +78,10 @@ class Light(Bridge):
         self.on = state["on"]
         return state
 
-    async def switch_on(self) -> bool:
+    async def switch_on(self) -> dict[str, Any]:
         self.on = True
-        status, _ = await self.set_state(self.id, {"on": True})
-        return status
+        return await self.set_state({"on": self.on})
 
-    async def switch_off(self) -> bool:
+    async def switch_off(self) -> dict[str, Any]:
         self.on = False
-        status, _ = await self.set_state(self.id, {"on": False})
-        return status
+        return await self.set_state({"on": self.on})

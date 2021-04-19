@@ -5,6 +5,9 @@ max-line-length = 100
 statistics = True
 verbose = 1
 
+per-file-ignores =
+  hue/__init__.py:F401
+
 exclude =
   .git,
   __pycache__,
