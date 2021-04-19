@@ -10,69 +10,40 @@
 
 ## Installation
 
-This is an async client for interacting with the Hue Bridge API, to control Hue Lights.
+This is an async client to interact with the Hue Bridge API.
 
 The minimum Python version required to run this is 3.7
 
 Install the package using pip:
 
-```shell
+```bash
 pip install hue-api
-```
+hue version
 
-- Go to [discovery.meethue.com](https://discovery.meethue.com/) to get the Hue bridge IP address.
-- Follow [this link](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started) to create a Hue API user if not already known, and set the env variable `HUE_BRIDGE_USER` ([API reference](https://developers.meethue.com/develop/hue-api/7-configuration-api/#create-user)).
+# To find your Hue Bridge IP address go to discovery.meethue.com, or run:
+hue bridge discover
+```
 
 ## Usage
 
-```python
-from hue import api
+Follow [this link](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started) to create a Hue API user if not already known ([API reference](https://developers.meethue.com/develop/hue-api/7-configuration-api/#create-user))
 
-# Set the light id to control
-light = 1
+```python
+from hue import Bridge, Light
+
+# Create a light object with the light id (number), Bridge IP and user
+light = Light(1, ip="your-hue-bridge-ip", user="hue-api-user")
 
 # from an async function
 async def main():
-  await api.switch_on(light)
+  await Bridge.discover()
+  await light.switch_on()
 
 # or from a sync context
 import asyncio
-asyncio.run(api.switch_on(light))
+asyncio.run(Bridge.discover())
+asyncio.run(light.switch_on())
 ```
-
-## Available methods
-
-- `switch_on(light: int) -> bool`
-
-  Turn `light` on
-
-- `switch_off(light: int) -> bool`
-
-  Turn `light` off
-
-- `get_light(light: int) -> dict[Any]`
-
-  Get all the information about `light`
-
-- `get_state(light: int) -> dict[Any]`
-
-  Get the current state of `light`
-
-- `set_state(light: int, state: dict[Any]) -> tuple[bool, dict[Any]]`
-
-  Set the state of `light`
-
-  Input values of "bri", "hue", "sat", "xy", "ct" in `state`
-
-  Returns the success value and the current state
-
-- `save_state(light: int) -> dict[Any]`
-
-  Save the current state of `light`
-
-- `restore_state(light: int) -> dict[Any]`
-
-  Restore the last saved state of `light`
 
 ## Changelog
 
