@@ -1,4 +1,4 @@
-name: Python Package Tests
+name: Python Tests
 
 on:
   push:
@@ -13,17 +13,24 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9, "3.10.0-alpha - 3.10.0"]
+        python-version: [3.7, 3.8, 3.9]
+
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install Dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade tox
+
       - name: Test with Tox
         run: tox -e py

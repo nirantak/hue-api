@@ -1,3 +1,64 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "hue"
+dist-name = "hue-api"
+author = "Nirantak Raghav"
+author-email = "hey@nirantak.com"
+description-file = "README.md"
+home-page = "https://github.com/nirantak/hue-api"
+keywords = "hue, lights, async, automation"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Typing :: Typed",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+]
+requires-python = "~=3.7"
+requires = [
+  "httpx ~=0.17.1",
+  "typer[all] ~=0.3.2"
+]
+
+[tool.flit.scripts]
+hue = "hue.cli:app"
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "Faker ~=8.1.0",
+  "pytest ~=6.2.3",
+]
+dev = [
+  "black ~=20.8b1",
+  "bump2version ~=1.0.1",
+  "coverage ~=5.5",
+  "flake8 ~=3.9.1",
+  "pre-commit ~=2.12.1",
+  "tox ~=3.23.0",
+]
+
+[tool.flit.metadata.urls]
+"Source Code" = "https://github.com/nirantak/hue-api"
+Documentation = "https://github.com/nirantak/hue-api#readme"
+Tracker = "https://github.com/nirantak/hue-api/issues"
+
+[tool.flit.sdist]
+include = ["tests", "LICENSE", "README.md", "CHANGELOG.md"]
+exclude = [".github"]
+
 [tool.black]
 line-length = 80
 target_version = ['py38']
