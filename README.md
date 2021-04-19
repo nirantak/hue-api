@@ -2,7 +2,11 @@
 
 > _Async API for controlling Hue Lights_
 
-[![PyPI](https://img.shields.io/pypi/v/hue-api.svg)](https://pypi.org/project/hue-api/ "PyPI Package")
+[![Python Tests](https://github.com/nirantak/hue-api/actions/workflows/python-test.yml/badge.svg)](https://github.com/nirantak/hue-api/actions/workflows/python-test.yml)
+[![Publish Package](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml/badge.svg)](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml)
+[![Package Version](https://img.shields.io/pypi/v/hue-api)](https://pypi.org/project/hue-api/)
+![Package Status](https://img.shields.io/pypi/status/hue-api)
+![Python Versions](https://img.shields.io/pypi/pyversions/hue-api)
 
 ## Installation
 
@@ -14,13 +18,6 @@ Install the package using pip:
 
 ```shell
 pip install hue-api
-```
-
-Create a `.env` file in your project root, with variables:
-
-```shell
-HUE_BRIDGE_IP=192.168.x.x
-HUE_BRIDGE_USER=xxxxxxxxxx
 ```
 
 - Go to [discovery.meethue.com](https://discovery.meethue.com/) to get the Hue bridge IP address.
@@ -76,3 +73,11 @@ asyncio.run(api.switch_on(light))
 - `restore_state(light: int) -> dict[Any]`
 
   Restore the last saved state of `light`
+
+## Changelog
+
+See the file [CHANGELOG.md](CHANGELOG.md)
+
+## License
+
+This project is licensed under the terms of the [MIT license](LICENSE)
