@@ -1,14 +1,15 @@
-[tool.poetry]
-name = "hue-api"
-version = "0.2.1"
-description = "Async API for controlling Hue Lights"
-authors = ["Nirantak Raghav <hey@nirantak.com>"]
-license = "MIT"
-readme = "README.md"
-homepage = "https://github.com/nirantak/hue-api"
-repository = "https://github.com/nirantak/hue-api"
-documentation = "https://github.com/nirantak/hue-api#readme"
-keywords = ["hue", "lights", "async", "automation"]
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "hue"
+dist-name = "hue-api"
+author = "Nirantak Raghav"
+author-email = "hey@nirantak.com"
+description-file = "README.md"
+home-page = "https://github.com/nirantak/hue-api"
+keywords = "hue, lights, async, automation"
 classifiers = [
   "Development Status :: 4 - Beta",
   "Natural Language :: English",
@@ -26,31 +27,37 @@ classifiers = [
   "Intended Audience :: Developers",
   "Intended Audience :: Information Technology",
 ]
-packages = [{ include = "hue" }]
+requires-python = "~=3.7"
+requires = [
+  "httpx ~=0.17.1",
+  "typer[all] ~=0.3.2"
+]
+
+[tool.flit.scripts]
+hue = "hue.cli:app"
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "Faker ~=8.1.0",
+  "pytest ~=6.2.3",
+]
+dev = [
+  "black ~=20.8b1",
+  "bump2version ~=1.0.1",
+  "coverage ~=5.5",
+  "flake8 ~=3.9.1",
+  "pre-commit ~=2.12.1",
+  "tox ~=3.23.0",
+]
+
+[tool.flit.metadata.urls]
+"Source Code" = "https://github.com/nirantak/hue-api"
+Documentation = "https://github.com/nirantak/hue-api#readme"
+Tracker = "https://github.com/nirantak/hue-api/issues"
+
+[tool.flit.sdist]
 include = ["tests", "LICENSE", "README.md", "CHANGELOG.md"]
-
-[tool.poetry.scripts]
-hue = 'hue.cli:app'
-
-[tool.poetry.dependencies]
-python = "^3.7"
-httpx = "^0.17.1"
-typer = {extras = ["all"], version = "^0.3.2"}
-
-[tool.poetry.dev-dependencies]
-setuptools = "^56.0.0"
-wheel = "^0.36.2"
-black = "^20.8b1"
-bump2version = "^1.0.1"
-flake8 = "^3.9.1"
-pre-commit = "^2.12.1"
-coverage = "^5.5"
-Faker = "^8.1.0"
-pytest = "^6.2.3"
-tox = "^3.23.0"
-
-[tool.poetry.urls]
-"Tracker" = "https://github.com/nirantak/hue-api/issues"
+exclude = [".github"]
 
 [tool.black]
 line-length = 80
@@ -66,7 +73,3 @@ exclude = '''
   | __pycache__
 )/
 '''
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
