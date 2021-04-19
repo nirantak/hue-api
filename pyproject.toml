@@ -40,19 +40,14 @@ typer = {extras = ["all"], version = "^0.3.2"}
 [tool.poetry.dev-dependencies]
 setuptools = "^56.0.0"
 wheel = "^0.36.2"
-black = { version = "^20.8b1", optional = true }
-bump2version = { version = "^1.0.1", optional = true }
-flake8 = { version = "^3.9.1", optional = true }
-pre-commit = { version = "^2.12.1", optional = true }
-coverage = { version = "^5.5", optional = true }
-Faker = { version = "^8.1.0", optional = true }
-pytest = { version = "^6.2.3", optional = true }
-tox = { version = "^3.23.0", optional = true }
-
-[tool.poetry.extras]
-dev = ["black", "bump2version", "flake8", "pre-commit"]
-test = ["coverage", "Faker", "pytest", "tox"]
-tox = ["Faker", "pytest"]
+black = "^20.8b1"
+bump2version = "^1.0.1"
+flake8 = "^3.9.1"
+pre-commit = "^2.12.1"
+coverage = "^5.5"
+Faker = "^8.1.0"
+pytest = "^6.2.3"
+tox = "^3.23.0"
 
 [tool.poetry.urls]
 "Tracker" = "https://github.com/nirantak/hue-api/issues"
