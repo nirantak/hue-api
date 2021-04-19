@@ -57,12 +57,11 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
-	ls -l dist
+	poetry build
+	ls -lh dist
 
 release: dist ## package and upload a release
-	twine upload dist/*
+	poetry publish
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
