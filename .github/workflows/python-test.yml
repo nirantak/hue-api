@@ -17,13 +17,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1.1.4
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: false
+          virtualenvs-path: ~/virtualenvs
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade tox
+
       - name: Test with Tox
         run: tox -e py
