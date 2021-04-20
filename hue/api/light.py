@@ -11,8 +11,8 @@ class Light(Bridge):
         self.id: int = id
         self.on: bool = None
         self.info: dict[str, Any] = {}
+        self.state: dict[str, Any] = {}
         self.saved_state: dict[str, Any] = {}
-        self.current_state: dict[str, Any] = {}
         super().__init__(ip=ip, user=user)
 
     def __str__(self) -> str:
@@ -33,9 +33,9 @@ class Light(Bridge):
 
     async def get_state(self) -> dict[str, Any]:
         resp = await self.get_info()
-        self.current_state = resp["state"]
+        self.state = resp["state"]
         self.on = resp["state"]["on"]
-        return self.current_state
+        return self.state
 
     async def set_state(self, state: dict[str, Any]) -> dict[str, Any]:
         data = {"on": bool(state.get("on"))}
@@ -43,8 +43,8 @@ class Light(Bridge):
             value = state.get(key)
             if value:
                 data[key] = value
-        self.on = data["on"]
         resp = await http.put(f"{self.url}/state", data)
+        await self.get_state()
         return resp.json()
 
     async def save_state(self) -> dict[str, Any]:
@@ -52,9 +52,8 @@ class Light(Bridge):
         return self.saved_state
 
     async def restore_state(self) -> dict[str, Any]:
-        state = await self.set_state(self.saved_state)
-        self.on = state["on"]
-        return state
+        resp = await self.set_state(self.saved_state)
+        return resp
 
     async def switch_on(self) -> dict[str, Any]:
         self.on = True
