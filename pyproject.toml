@@ -51,7 +51,7 @@ dev = [
 ]
 
 [tool.flit.metadata.urls]
-"Source Code" = "https://github.com/nirantak/hue-api"
+Source = "https://github.com/nirantak/hue-api"
 Documentation = "https://github.com/nirantak/hue-api#readme"
 Tracker = "https://github.com/nirantak/hue-api/issues"
 
