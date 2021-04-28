@@ -42,7 +42,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -rf htmlcov/ .coverage coverage.json
 
 lint: ## check pre-commit linting rules
-	pre-commit run --all-files
+	pre-commit run --all-files --show-diff-on-failure --color always
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -65,4 +65,4 @@ release: clean ## package and upload a release
 	ls -lh dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	flit install
