@@ -1,0 +1,13 @@
+pip
+wheel
+setuptools
+flit
+httpx
+typer[all]
+Faker
+pytest
+black
+coverage
+flake8
+pre-commit
+tox

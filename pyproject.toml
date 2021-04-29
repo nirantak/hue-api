@@ -29,7 +29,7 @@ classifiers = [
 ]
 requires-python = "~=3.7"
 requires = [
-  "httpx ~=0.17.1",
+  "httpx ~=0.18.0",
   "typer[all] ~=0.3.2"
 ]
 
@@ -38,15 +38,15 @@ hue = "hue.cli:app"
 
 [tool.flit.metadata.requires-extra]
 test = [
-  "Faker ~=8.1.0",
+  "Faker ~=8.1.1",
   "pytest ~=6.2.3",
 ]
 dev = [
-  "black",
-  "coverage",
-  "flake8",
-  "pre-commit",
-  "tox",
+  "black ~=21.4b2",
+  "coverage ~=5.5",
+  "flake8 ~=3.9.1",
+  "pre-commit ~=2.12.1",
+  "tox ~=3.23.0",
 ]
 
 [tool.flit.metadata.urls]
