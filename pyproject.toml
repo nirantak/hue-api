@@ -29,7 +29,7 @@ classifiers = [
 ]
 requires-python = "~=3.7"
 requires = [
-  "httpx ~=0.18.0",
+  "httpx ~=0.18.1",
   "typer[all] ~=0.3.2"
 ]
 
@@ -42,11 +42,11 @@ test = [
   "pytest ~=6.2.3",
 ]
 dev = [
-  "black ~=21.4b2",
-  "coverage ~=5.5",
-  "flake8 ~=3.9.1",
-  "pre-commit ~=2.12.1",
-  "tox ~=3.23.0",
+  "black",
+  "coverage",
+  "flake8",
+  "pre-commit",
+  "tox",
 ]
 
 [tool.flit.metadata.urls]
