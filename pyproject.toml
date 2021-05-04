@@ -38,7 +38,7 @@ hue = "hue.cli:app"
 
 [tool.flit.metadata.requires-extra]
 test = [
-  "Faker ~=8.1.1",
+  "Faker ~=8.1.2",
   "pytest ~=6.2.3",
 ]
 dev = [
