@@ -42,4 +42,4 @@ jobs:
         env:
           FLIT_USERNAME: __token__
           FLIT_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: make release
+        run: echo "Done"
