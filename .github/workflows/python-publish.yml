@@ -18,10 +18,11 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install Dependencies
+      - name: Install Dependencies and Build
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade flit
+          make dist
 
       - name: Get Changelog
         run: |
@@ -35,10 +36,12 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: CURRENT_CHANGELOG.txt
+          files: dist/*.whl
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Publish
+      - name: Publish on PyPI
         if: ${{ steps.gh_release.outputs.url }}
         env:
           FLIT_USERNAME: __token__
