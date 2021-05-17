@@ -49,7 +49,7 @@ set -x
 git stash save
 
 $SED -i s/__version__\ =\ \"$CURRENT_VERSION\"/__version__\ =\ \"$NEW_VERSION\"/i $BASE_DIR/$INIT_FILE
-$SED -i s/\#\#\ Unreleased.*/\#\#\ $NEW_VERSION\ \($(date '+%Y-%m-%d')\)/i $BASE_DIR/$CHANGELOG_FILE
+$SED -i s/\#\#\ Unreleased.*/\#\#\ v$NEW_VERSION\ \($(date '+%Y-%m-%d')\)/i $BASE_DIR/$CHANGELOG_FILE
 
 git add $BASE_DIR/$INIT_FILE $BASE_DIR/$CHANGELOG_FILE
 git --no-pager diff --staged
