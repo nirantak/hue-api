@@ -27,13 +27,14 @@ jobs:
         run: |
           awk -v ver=${GITHUB_REF#refs/*/} '
             /^## v/ { if (p){exit}; if ($2 == ver){p=1; next} } p && NF
-          ' CHANGELOG.md > ${{ github.workflow }}-CHANGELOG.txt
+          ' CHANGELOG.md > "${{ github.workflow }}-CHANGELOG.txt"
+          cat "${{ github.workflow }}-CHANGELOG.txt"
 
       - name: Create Release
         id: gh_release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: ${{ github.workflow }}-CHANGELOG.txt
+          body_path: "${{ github.workflow }}-CHANGELOG.txt"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
