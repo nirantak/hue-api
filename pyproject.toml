@@ -30,7 +30,8 @@ classifiers = [
 requires-python = "~=3.7"
 requires = [
   "httpx ~=0.18.1",
-  "typer[all] ~=0.3.2"
+  "typer[all] ~=0.3.2",
+  "rich ~=10.2.1",
 ]
 
 [tool.flit.scripts]

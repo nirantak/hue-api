@@ -1,6 +1,7 @@
 import typer
 
 from hue import __version__
+from hue.cli.console import console
 
 from . import bridge, light
 
@@ -12,4 +13,4 @@ app.add_typer(light.app, name="light", help="Interact with the Lights API")
 @app.command()
 def version():
     """Show version of hue-api installed"""
-    typer.echo(f"hue-api version: {__version__}")
+    console.print(f"hue-api version: {__version__}")
