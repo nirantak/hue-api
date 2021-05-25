@@ -31,7 +31,7 @@ requires-python = "~=3.7"
 requires = [
   "httpx ~=0.18.1",
   "typer[all] ~=0.3.2",
-  "rich ~=10.2.1",
+  "rich ~=10.2.2",
 ]
 
 [tool.flit.scripts]
@@ -39,7 +39,7 @@ hue = "hue.cli:app"
 
 [tool.flit.metadata.requires-extra]
 test = [
-  "Faker ~=8.1.4",
+  "Faker ~=8.2.1",
   "pytest ~=6.2.4",
 ]
 dev = [

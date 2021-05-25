@@ -10,7 +10,7 @@ commonmark==0.9.1
 coverage==5.5
 distlib==0.3.1
 docutils==0.17.1
-Faker==8.1.4
+Faker==8.2.1
 filelock==3.0.12
 flake8==3.9.2
 flit==3.2.0
@@ -26,9 +26,9 @@ mypy-extensions==0.4.3
 nodeenv==1.6.0
 packaging==20.9
 pathspec==0.8.1
-pip==21.1.1
+pip==21.1.2
 pluggy==0.13.1
-pre-commit==2.12.1
+pre-commit==2.13.0
 py==1.10.0
 pycodestyle==2.7.0
 pyflakes==2.3.1
@@ -40,8 +40,8 @@ PyYAML==5.4.1
 regex==2021.4.4
 requests==2.25.1
 rfc3986==1.4.0
-rich==10.2.1
-setuptools==56.2.0
+rich==10.2.2
+setuptools==57.0.0
 shellingham==1.4.0
 six==1.15.0
 sniffio==1.2.0
