@@ -10,7 +10,7 @@ commonmark==0.9.1
 coverage==5.5
 distlib==0.3.1
 docutils==0.17.1
-Faker==8.2.1
+Faker==8.4.0
 filelock==3.0.12
 flake8==3.9.2
 flit==3.2.0
