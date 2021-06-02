@@ -5,8 +5,8 @@ flit
 httpx
 typer[all]
 rich
-Faker
 pytest
+Faker
 black
 coverage
 flake8
