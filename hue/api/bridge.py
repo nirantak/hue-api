@@ -26,3 +26,7 @@ class Bridge:
     async def get_info(self) -> dict[str, Any]:
         self.info = await http.get_json(self.url)
         return self.info
+
+    async def get_config(self) -> dict[str, Any]:
+        resp = await self.get_info()
+        return resp["config"]
