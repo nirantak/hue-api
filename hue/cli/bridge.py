@@ -11,6 +11,7 @@ app = typer.Typer()
 
 @app.command()
 def discover():
+    """Discover Hue Bridges available in this local network"""
     resp = asyncio.run(Bridge.discover())
     console.print(f"Hue Bridges discovered: {json.dumps(resp, indent=2)}")
 
@@ -20,6 +21,7 @@ def info(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """List all the information about a Hue Bridge"""
     bridge = Bridge(ip=ip, user=user)
     resp = asyncio.run(bridge.get_info())
     console.print(json.dumps(resp, indent=2))
@@ -30,6 +32,7 @@ def get(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """Get the config of a Hue Bridge"""
     bridge = Bridge(ip=ip, user=user)
     resp = asyncio.run(bridge.get_config())
     console.print(json.dumps(resp, indent=2))

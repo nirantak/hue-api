@@ -15,6 +15,7 @@ def info(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """List all the information about a Hue Light"""
     light = Light(id, ip=ip, user=user)
     resp = asyncio.run(light.get_info())
     console.print(json.dumps(resp, indent=2))
@@ -26,6 +27,7 @@ def get(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """Get the state of a Hue Light"""
     light = Light(id, ip=ip, user=user)
     resp = asyncio.run(light.get_state())
     console.print(json.dumps(resp, indent=2))
@@ -37,8 +39,9 @@ def on(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """Power on a light"""
     light = Light(id, ip=ip, user=user)
-    resp = asyncio.run(light.switch_on())
+    resp = asyncio.run(light.power_on())
     console.print(json.dumps(resp, indent=2))
 
 
@@ -48,8 +51,9 @@ def off(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """Power off a light"""
     light = Light(id, ip=ip, user=user)
-    resp = asyncio.run(light.switch_off())
+    resp = asyncio.run(light.power_off())
     console.print(json.dumps(resp, indent=2))
 
 
@@ -59,6 +63,7 @@ def toggle(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
+    """Toggle the power state of a light"""
     light = Light(id, ip=ip, user=user)
     resp = asyncio.run(light.toggle())
     console.print(json.dumps(resp, indent=2))
