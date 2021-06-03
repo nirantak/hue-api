@@ -6,6 +6,8 @@ httpx
 typer[all]
 rich
 pytest
+pytest-asyncio
+pytest-cov
 Faker
 black
 coverage

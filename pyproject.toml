@@ -40,6 +40,8 @@ hue = "hue.cli:app"
 [tool.flit.metadata.requires-extra]
 test = [
   "pytest ~=6.2.4",
+  "pytest-asyncio",
+  "pytest-cov",
   "Faker",
 ]
 dev = [
