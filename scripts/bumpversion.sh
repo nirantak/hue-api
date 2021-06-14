@@ -54,5 +54,5 @@ $SED -i s/\#\#\ Unreleased.*/\#\#\ v$NEW_VERSION\ \($(date '+%Y-%m-%d')\)/i $BAS
 git add $BASE_DIR/$INIT_FILE $BASE_DIR/$CHANGELOG_FILE
 git --no-pager diff --staged
 git commit -m "Bump version: $CURRENT_VERSION → $NEW_VERSION"
-git tag v$NEW_VERSION
+git tag v$NEW_VERSION -m "Bump version: $CURRENT_VERSION → $NEW_VERSION"
 git stash pop
