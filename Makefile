@@ -51,7 +51,7 @@ lint: ## check pre-commit linting rules
 	pre-commit run --all-files --show-diff-on-failure --color always
 
 test: ## run tests quickly with the default Python
-	pytest --cov --cov-report=html --no-cov-on-fail
+	python -m pytest --cov --cov-report=html --no-cov-on-fail
 
 test-all: ## run tests on every Python version with tox
 	tox

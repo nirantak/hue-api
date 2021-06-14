@@ -9,8 +9,9 @@ def test_command_line_interface():
 
     res = runner.invoke(cli.app, ["--help"])
     assert res.exit_code == 0
+    assert "Usage: hue" in res.output
     assert "Show this message and exit" in res.output
 
     res = runner.invoke(cli.app, ["version"])
     assert res.exit_code == 0
-    assert f"{__version__}" in res.output
+    assert res.output == f"hue-api version: {__version__}\n"
