@@ -1,6 +1,6 @@
 appdirs==1.4.4
 attrs==20.3.0
-black==21.5b2
+black==21.6b0
 certifi==2020.12.5
 cfgv==3.2.0
 chardet==4.0.0
@@ -10,7 +10,7 @@ commonmark==0.9.1
 coverage==5.5
 distlib==0.3.1
 docutils==0.17.1
-Faker==8.5.0
+Faker==8.7.0
 filelock==3.0.12
 flake8==3.9.2
 flit==3.2.0
@@ -42,7 +42,7 @@ PyYAML==5.4.1
 regex==2021.4.4
 requests==2.25.1
 rfc3986==1.4.0
-rich==10.2.2
+rich==10.3.0
 setuptools==57.0.0
 shellingham==1.4.0
 six==1.15.0

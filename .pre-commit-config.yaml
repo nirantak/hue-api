@@ -17,7 +17,7 @@ repos:
       - id: pretty-format-json
         args: [--autofix, --no-sort-keys]
   - repo: https://github.com/psf/black
-    rev: 21.5b2
+    rev: 21.6b0
     hooks:
       - id: black
   - repo: https://github.com/pycqa/flake8
