@@ -30,9 +30,7 @@ class TestLight:
 
     def test_light_url(self):
         light = Light(self.num, ip=self.ip, user=self.user)
-        assert (
-            light.url == f"http://{self.ip}/api/{self.user}/lights/{self.num}"
-        )
+        assert light.url == f"http://{self.ip}/api/{self.user}/lights/{self.num}"
 
     @patch("hue.api.http.get_json")
     @pytest.mark.asyncio
@@ -40,9 +38,7 @@ class TestLight:
         mock_http.return_value = self.mock_resp
         light = Light(self.num, ip=self.ip, user=self.user)
         resp = await light.get_info()
-        mock_http.assert_called_once_with(
-            f"http://{self.ip}/api/{self.user}/lights/{self.num}"
-        )
+        mock_http.assert_called_once_with(f"http://{self.ip}/api/{self.user}/lights/{self.num}")
         assert mock_http.call_count == 1
         assert resp == self.mock_resp
         assert light.info == self.mock_resp
