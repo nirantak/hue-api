@@ -12,7 +12,7 @@
 
 This is an async client to interact with the Hue Bridge API.
 
-The minimum Python version required to run this is 3.7
+The minimum Python version required to run this is 3.8
 
 Install the package using pip:
 
@@ -37,12 +37,12 @@ light = Light(1, ip="your-hue-bridge-ip", user="hue-api-user")
 # from an async function
 async def main():
   await Bridge.discover()
-  await light.switch_on()
+  await light.power_on()
 
 # or from a sync context
 import asyncio
 asyncio.run(Bridge.discover())
-asyncio.run(light.switch_on())
+asyncio.run(light.power_on())
 ```
 
 ## Changelog

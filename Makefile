@@ -51,15 +51,13 @@ lint: ## check pre-commit linting rules
 	pre-commit run --all-files --show-diff-on-failure --color always
 
 test: ## run tests quickly with the default Python
-	pytest
+	python -m pytest --cov --cov-report=html --no-cov-on-fail
 
 test-all: ## run tests on every Python version with tox
 	tox
 
-coverage: ## check code coverage quickly with the default Python
-	coverage run --source hue -m pytest
-	coverage report --precision=2
-	coverage html --precision=2
+coverage: test ## check code coverage quickly with the default Python
+	coverage report
 	$(BROWSER) htmlcov/index.html
 
 dist: clean ## builds source and wheel package

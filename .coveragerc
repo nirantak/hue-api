@@ -1,0 +1,12 @@
+[run]
+branch = True
+source = hue
+
+[report]
+exclude_lines =
+  pragma: no cover
+  raise AssertionError
+  raise NotImplementedError
+  if 0:
+  if __name__ == .__main__.:
+precision = 2

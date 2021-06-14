@@ -4,8 +4,12 @@ setuptools
 flit
 httpx
 typer[all]
-Faker
+rich
 pytest
+pytest-asyncio
+pytest-mock
+pytest-cov
+Faker
 black
 coverage
 flake8

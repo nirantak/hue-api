@@ -55,10 +55,12 @@ class Light(Bridge):
         resp = await self.set_state(self.saved_state)
         return resp
 
-    async def switch_on(self) -> dict[str, Any]:
-        self.on = True
-        return await self.set_state({"on": self.on})
+    async def power_on(self) -> dict[str, Any]:
+        return await self.set_state({"on": True})
 
-    async def switch_off(self) -> dict[str, Any]:
-        self.on = False
-        return await self.set_state({"on": self.on})
+    async def power_off(self) -> dict[str, Any]:
+        return await self.set_state({"on": False})
+
+    async def toggle(self) -> dict[str, Any]:
+        await self.get_state()
+        return await self.set_state({"on": not self.on})

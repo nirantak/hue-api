@@ -1,4 +1,5 @@
 .vscode
+CURRENT_CHANGELOG.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

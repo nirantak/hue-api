@@ -1,8 +1,9 @@
 name: Publish Package
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   publish:
@@ -17,12 +18,31 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install Dependencies
+      - name: Install Dependencies and Build
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install --upgrade flit
+          make dist
 
-      - name: Build and Publish
+      - name: Get Changelog
+        run: |
+          awk -v ver=${GITHUB_REF#refs/*/} '
+            /^## v/ { if (p){exit}; if ($2 == ver){p=1; next} } p && NF
+          ' CHANGELOG.md > CURRENT_CHANGELOG.txt
+          cat CURRENT_CHANGELOG.txt
+
+      - name: Create Release
+        id: gh_release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CURRENT_CHANGELOG.txt
+          files: dist/*.whl
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish on PyPI
+        if: ${{ steps.gh_release.outputs.url }}
         env:
           FLIT_USERNAME: __token__
           FLIT_PASSWORD: ${{ secrets.PYPI_TOKEN }}
