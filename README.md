@@ -12,7 +12,7 @@
 
 This is an async client to interact with the Hue Bridge API.
 
-The minimum Python version required to run this is 3.7
+The minimum Python version required to run this is 3.8
 
 Install the package using pip:
 

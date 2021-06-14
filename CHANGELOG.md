@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- More CLI command for Hue API
+- More CLI commands for Hue API
 - Update installed package versions
+- Add test coverage
+- Minimum Python version supported is now 3.8
 
 ## v0.3.1 (2021-04-20)
 
