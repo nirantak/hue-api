@@ -1,3 +1,6 @@
+from unittest.mock import MagicMock, patch
+
+import pytest
 from faker import Faker
 
 from hue import Light
@@ -8,6 +11,10 @@ class TestLight:
     ip = fake.ipv4_private()
     user = fake.uuid4()
     num = fake.random_int()
+    mock_resp = {
+        "state": {"on": True, "bri": 200, "xy": [0.5, 0.5]},
+        "name": f"Light {num}",
+    }
 
     def test_light_init(self):
         light = Light(self.num, ip=self.ip, user=self.user)
@@ -26,3 +33,89 @@ class TestLight:
         assert (
             light.url == f"http://{self.ip}/api/{self.user}/lights/{self.num}"
         )
+
+    @patch("hue.api.http.get_json")
+    @pytest.mark.asyncio
+    async def test_light_info(self, mock_http):
+        mock_http.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        resp = await light.get_info()
+        mock_http.assert_called_once_with(
+            f"http://{self.ip}/api/{self.user}/lights/{self.num}"
+        )
+        assert mock_http.call_count == 1
+        assert resp == self.mock_resp
+        assert light.info == self.mock_resp
+
+    @patch("hue.api.light.Light.get_info")
+    @pytest.mark.asyncio
+    async def test_light_get_state(self, mock_http):
+        mock_http.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        resp = await light.get_state()
+        assert mock_http.call_count == 1
+        assert resp == self.mock_resp["state"]
+        assert light.state == self.mock_resp["state"]
+        assert light.on == self.mock_resp["state"]["on"]
+
+    @patch("hue.api.http.put")
+    @patch("hue.api.light.Light.get_state")
+    @pytest.mark.asyncio
+    async def test_light_set_state(self, mock_http_get, mock_http_put):
+        mock_http_put.return_value.json = MagicMock(return_value=self.mock_resp)
+        light = Light(self.num, ip=self.ip, user=self.user)
+        resp = await light.set_state(self.mock_resp["state"])
+        mock_http_put.assert_called_once_with(
+            f"http://{self.ip}/api/{self.user}/lights/{self.num}/state",
+            self.mock_resp["state"],
+        )
+        assert mock_http_put.call_count == 1
+        assert mock_http_get.call_count == 1
+        assert resp == self.mock_resp
+
+    @patch("hue.api.light.Light.get_state")
+    @pytest.mark.asyncio
+    async def test_light_save_state(self, mock_http):
+        mock_http.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        resp = await light.save_state()
+        assert mock_http.call_count == 1
+        assert resp == self.mock_resp
+        assert light.saved_state == self.mock_resp
+
+    @patch("hue.api.light.Light.set_state")
+    @pytest.mark.asyncio
+    async def test_light_restore_state(self, mock_http):
+        mock_http.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        light.saved_state = self.mock_resp
+        resp = await light.restore_state()
+        mock_http.assert_called_once_with(self.mock_resp)
+        assert mock_http.call_count == 1
+        assert resp == self.mock_resp
+
+    @pytest.mark.parametrize("power,state", [("on", True), ("off", False)])
+    @patch("hue.api.light.Light.set_state")
+    @pytest.mark.asyncio
+    async def test_light_power(self, mock_http, power, state):
+        mock_http.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        power_method = getattr(light, f"power_{power}")
+        resp = await power_method()
+        mock_http.assert_called_once_with({"on": state})
+        assert mock_http.call_count == 1
+        assert resp == self.mock_resp
+
+    @pytest.mark.parametrize("power", [(True,), (False,)])
+    @patch("hue.api.light.Light.set_state")
+    @patch("hue.api.light.Light.get_state")
+    @pytest.mark.asyncio
+    async def test_light_toggle(self, mock_http_get, mock_http_set, power):
+        mock_http_set.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        light.on = power
+        resp = await light.toggle()
+        mock_http_set.assert_called_once_with({"on": not power})
+        assert mock_http_get.call_count == 1
+        assert mock_http_set.call_count == 1
+        assert resp == self.mock_resp

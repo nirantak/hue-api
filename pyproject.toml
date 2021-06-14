@@ -41,6 +41,7 @@ hue = "hue.cli:app"
 test = [
   "pytest ~=6.2.4",
   "pytest-asyncio",
+  "pytest-mock",
   "pytest-cov",
   "Faker",
 ]

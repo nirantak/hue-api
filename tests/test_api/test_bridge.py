@@ -10,6 +10,7 @@ class TestBridge:
     fake = Faker()
     ip = fake.ipv4_private()
     user = fake.uuid4()
+    mock_resp = {"config": {"ipaddress": ip}, "lights": {}}
 
     def test_bridge_init(self):
         bridge = Bridge(ip=self.ip, user=self.user)
@@ -32,21 +33,19 @@ class TestBridge:
     @patch("hue.api.http.get_json")
     @pytest.mark.asyncio
     async def test_bridge_info(self, mock_http):
-        mock_resp = {"state": True}
-        mock_http.return_value = mock_resp
+        mock_http.return_value = self.mock_resp
         bridge = Bridge(ip=self.ip, user=self.user)
         resp = await bridge.get_info()
         mock_http.assert_called_once_with(f"http://{self.ip}/api/{self.user}")
         assert mock_http.call_count == 1
-        assert resp == mock_resp
-        assert bridge.info == mock_resp
+        assert resp == self.mock_resp
+        assert bridge.info == self.mock_resp
 
     @patch("hue.api.bridge.Bridge.get_info")
     @pytest.mark.asyncio
     async def test_bridge_config(self, mock_http):
-        mock_resp = {"config": {"state": True}}
-        mock_http.return_value = mock_resp
+        mock_http.return_value = self.mock_resp
         bridge = Bridge(ip=self.ip, user=self.user)
         resp = await bridge.get_config()
         assert mock_http.call_count == 1
-        assert resp == mock_resp["config"]
+        assert resp == self.mock_resp["config"]
