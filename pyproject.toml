@@ -29,7 +29,7 @@ classifiers = [
 ]
 requires-python = "~=3.8"
 requires = [
-  "httpx ~=0.18.1",
+  "httpx ~=0.18.2",
   "typer[all] ~=0.3.2",
   "rich ~=10.3.0",
 ]
