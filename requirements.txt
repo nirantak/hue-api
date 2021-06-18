@@ -15,3 +15,6 @@ coverage
 flake8
 pre-commit
 tox
+mkdocs
+mkdocs-material
+mkdocstrings

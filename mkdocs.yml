@@ -1,0 +1,52 @@
+site_name: Hue API
+site_url: https://nirantak.com/
+repo_url: https://github.com/nirantak/hue-api
+repo_name: nirantak/hue-api
+edit_uri: ""
+site_author: Nirantak Raghav
+site_description: Async API for controlling Hue Lights
+
+theme:
+  name: material
+  palette:
+    primary: "black"
+    accent: "teal"
+  locale: en
+
+nav:
+  - index.md
+  - api.md
+  - cli.md
+  - changelog.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+            show_root_heading: true
+      watch:
+        - hue
+
+markdown_extensions:
+  - smarty
+  - sane_lists
+  - extra
+  - toc:
+      permalink: True
+  - codehilite:
+      css_class: highlight
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: "https://github.com/nirantak/hue-api"
+    - icon: fontawesome/brands/twitter
+      link: "https://twitter.com/nirantakr"
+    - icon: fontawesome/brands/linkedin
+      link: "https://www.linkedin.com/in/nirantak"
+    - icon: fontawesome/solid/globe
+      link: "https://nirantak.com"

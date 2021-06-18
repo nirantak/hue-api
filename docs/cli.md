@@ -1,0 +1,3 @@
+# CLI Reference
+
+::: hue.cli

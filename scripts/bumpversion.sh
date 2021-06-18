@@ -7,7 +7,7 @@ ACTION=$1
 GREP=grep
 SED=sed
 INIT_FILE=hue/__init__.py
-CHANGELOG_FILE=CHANGELOG.md
+CHANGELOG_FILE=docs/changelog.md
 
 if [[ "$OSTYPE" =~ "darwin" ]]; then
   # GNU tools required, run `brew install grep sed` for MacOS

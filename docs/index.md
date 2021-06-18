@@ -1,4 +1,4 @@
-# Hue API
+# Introduction
 
 > _Async API for controlling Hue Lights_
 
@@ -45,10 +45,6 @@ asyncio.run(Bridge.discover())
 asyncio.run(light.power_on())
 ```
 
-## Changelog
-
-See the file [docs/changelog.md](docs/changelog.md)
-
 ## License
 
-This project is licensed under the terms of the [MIT license](LICENSE)
+This project is licensed under the terms of the [MIT license](https://github.com/nirantak/hue-api/blob/main/LICENSE)
