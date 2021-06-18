@@ -33,7 +33,7 @@ help:
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
-	rm -rf build/ dist/ .eggs/
+	rm -rf build/ dist/ .eggs/ site/
 	find . -name '*.egg-info' -exec rm -rf {} +
 	find . -name '*.egg' -exec rm -f {} +
 
@@ -77,3 +77,6 @@ update: ## update all listed packages
 
 versions: ## show installed versions of listed packages
 	pip freeze -r requirements.dev.txt | $(SED) '/The following requirements were added by pip freeze/Q'
+
+docs: clean ## builds docs
+	mkdocs build

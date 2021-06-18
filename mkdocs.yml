@@ -1,5 +1,5 @@
 site_name: Hue API
-site_url: https://nirantak.com/
+site_url: https://hue-api.nirantak.com/
 repo_url: https://github.com/nirantak/hue-api
 repo_name: nirantak/hue-api
 edit_uri: ""
@@ -53,10 +53,10 @@ plugins:
 markdown_extensions:
   - admonition
   - extra
-  - pymdownx.snippets:
-      check_paths: true
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.snippets:
+      check_paths: true
   - smarty
   - sane_lists
   - toc:

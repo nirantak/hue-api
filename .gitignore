@@ -61,8 +61,8 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Sphinx documentation
-docs/_build/
+# Documentation
+site
 
 # PyBuilder
 target/
@@ -76,13 +76,6 @@ ipython_config.py
 
 # PEP 582
 __pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
 
 # Environments
 .env

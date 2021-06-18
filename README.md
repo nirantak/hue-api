@@ -8,6 +8,10 @@
 ![Package Status](https://img.shields.io/pypi/status/hue-api)
 ![Python Versions](https://img.shields.io/pypi/pyversions/hue-api)
 
+Documentation: [hue-api.nirantak.com](https://hue-api.nirantak.com/)
+
+Source: [github.com/nirantak/hue-api](https://github.com/nirantak/hue-api)
+
 ## Installation
 
 This is an async client to interact with the Hue Bridge API.
@@ -37,7 +41,6 @@ hue bridge discover
 ```
 
 ### Using the API
-
 
 ```python
 from hue import Bridge, Light
