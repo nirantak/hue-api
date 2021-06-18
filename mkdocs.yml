@@ -9,15 +9,34 @@ site_description: Async API for controlling Hue Lights
 theme:
   name: material
   palette:
-    primary: black
-    accent: teal
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: teal
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: teal
+      toggle:
+        icon: material/lightbulb
+        name: Switch to Light mode
+  icon:
+    logo: material/home-lightbulb-outline
+  favicon: images/home-lightbulb.ico
   locale: en
+  features:
+    - navigation.instant
+    - navigation.top
 
 nav:
   - Introduction: index.md
   - api.md
   - cli.md
-  - changelog.md
+  - Changelog: CHANGELOG.md
+  - License: license.md
 
 plugins:
   - search
@@ -32,18 +51,20 @@ plugins:
         - hue
 
 markdown_extensions:
+  - admonition
+  - extra
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.highlight
+  - pymdownx.superfences
   - smarty
   - sane_lists
-  - extra
   - toc:
       permalink: "🔗"
-  - codehilite:
-      css_class: highlight
-  - admonition
 
 extra:
   social:
-    - icon: fontawesome/brands/github-alt
+    - icon: fontawesome/brands/github
       link: "https://github.com/nirantak/hue-api"
     - icon: fontawesome/brands/twitter
       link: "https://twitter.com/nirantakr"

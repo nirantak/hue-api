@@ -18,15 +18,26 @@ Install the package using pip:
 
 ```bash
 pip install hue-api
+```
+
+## Usage
+
+Follow [this link](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started) to create a Hue API user if not already known ([API reference](https://developers.meethue.com/develop/hue-api/7-configuration-api/#create-user))
+
+### Using the CLI
+
+```bash
+hue --help
+
+# Get the version of hue-api installed
 hue version
 
 # To find your Hue Bridge IP address go to discovery.meethue.com, or run:
 hue bridge discover
 ```
 
-## Usage
+### Using the API
 
-Follow [this link](https://developers.meethue.com/develop/get-started-2/#so-lets-get-started) to create a Hue API user if not already known ([API reference](https://developers.meethue.com/develop/hue-api/7-configuration-api/#create-user))
 
 ```python
 from hue import Bridge, Light
@@ -47,8 +58,8 @@ asyncio.run(light.power_on())
 
 ## Changelog
 
-See the file [docs/changelog.md](docs/changelog.md)
+See the file [CHANGELOG.md](CHANGELOG.md)
 
 ## License
 
-This project is licensed under the terms of the [MIT license](LICENSE)
+This project is licensed under the terms of the [MIT license](https://github.com/nirantak/hue-api/blob/main/LICENSE)
