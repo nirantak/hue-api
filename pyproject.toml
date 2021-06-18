@@ -52,6 +52,11 @@ dev = [
   "pre-commit",
   "tox",
 ]
+doc = [
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings"
+]
 
 [tool.flit.metadata.urls]
 Source = "https://github.com/nirantak/hue-api"

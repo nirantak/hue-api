@@ -1,4 +1,4 @@
-# Introduction
+# Hue API
 
 > _Async API for controlling Hue Lights_
 

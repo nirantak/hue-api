@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Update httpx to 0.18.2
+- Update dependencies
+- Add mkdocs for documentation [hue-api.nirantak.com](https://hue-api.nirantak.com/)
 
 ## v0.4.0 (2021-06-14)
 

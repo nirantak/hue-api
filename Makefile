@@ -72,8 +72,8 @@ install: clean ## install the package to the active Python's site-packages
 	flit install
 
 update: ## update all listed packages
-	pip install -U -r requirements.txt
-	pip freeze --all > requirements.lock.txt
+	pip install -U -r requirements.dev.txt
+	pip freeze --all > requirements.txt
 
 versions: ## show installed versions of listed packages
-	pip freeze -r requirements.txt | $(SED) '/The following requirements were added by pip freeze/Q'
+	pip freeze -r requirements.dev.txt | $(SED) '/The following requirements were added by pip freeze/Q'
