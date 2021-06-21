@@ -37,10 +37,7 @@ nav:
   - "API Reference":
       - Bridge: api/bridge.md
       - Light: api/light.md
-  - "CLI Reference":
-      - Introduction: cli/index.md
-      - Bridge: cli/bridge.md
-      - Light: cli/light.md
+  - "CLI Reference": cli.md
   - Changelog: CHANGELOG.md
   - License: license.md
 
