@@ -12,13 +12,13 @@ $ hue [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `bridge`: Interact with the Bridge API
-* `light`: Interact with the Lights API
+* `bridge`: Interact with the Hue Bridge API
+* `light`: Interact with the Hue Lights API
 * `version`: Show version of hue-api installed
 
 ## `hue bridge`
 
-Interact with the Bridge API
+Interact with the Hue Bridge API
 
 **Usage**:
 
@@ -32,13 +32,13 @@ $ hue bridge [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `discover`: Discover Hue Bridges available in this local...
-* `get`: Get the config of a Hue Bridge
+* `discover`: Discover online Bridges in the local network
+* `get`: Get the config of a Bridge
 * `info`: List all the information about a Hue Bridge
 
 ### `hue bridge discover`
 
-Discover Hue Bridges available in this local network
+Discover online Bridges in the local network
 
 **Usage**:
 
@@ -52,7 +52,7 @@ $ hue bridge discover [OPTIONS]
 
 ### `hue bridge get`
 
-Get the config of a Hue Bridge
+Get the config of a Bridge
 
 **Usage**:
 
@@ -84,7 +84,7 @@ $ hue bridge info [OPTIONS]
 
 ## `hue light`
 
-Interact with the Lights API
+Interact with the Hue Lights API
 
 **Usage**:
 
@@ -98,7 +98,7 @@ $ hue light [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
-* `get`: Get the state of a Hue Light
+* `get`: Get the state of a Light
 * `info`: List all the information about a Hue Light
 * `off`: Power off a light
 * `on`: Power on a light
@@ -106,7 +106,7 @@ $ hue light [OPTIONS] COMMAND [ARGS]...
 
 ### `hue light get`
 
-Get the state of a Hue Light
+Get the state of a Light
 
 **Usage**:
 
