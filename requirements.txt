@@ -58,7 +58,7 @@ pyyaml-env-tag==0.1
 regex==2021.4.4
 requests==2.25.1
 rfc3986==1.4.0
-rich==10.3.0
+rich==10.4.0
 setuptools==57.0.0
 shellingham==1.4.0
 six==1.15.0

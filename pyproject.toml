@@ -31,7 +31,7 @@ requires-python = "~=3.8"
 requires = [
   "httpx ~=0.18.2",
   "typer[all] ~=0.3.2",
-  "rich ~=10.3.0",
+  "rich ~=10.4.0",
 ]
 
 [tool.flit.scripts]

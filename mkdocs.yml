@@ -11,7 +11,7 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: black
+      primary: blue grey
       accent: teal
       toggle:
         icon: material/lightbulb-outline
@@ -29,11 +29,14 @@ theme:
   locale: en
   features:
     - navigation.instant
+    - navigation.expand
     - navigation.top
 
 nav:
   - Introduction: index.md
-  - api.md
+  - "API Reference":
+      - Bridge: api_bridge.md
+      - Light: api_light.md
   - cli.md
   - Changelog: CHANGELOG.md
   - License: license.md
@@ -47,6 +50,9 @@ plugins:
           rendering:
             show_source: true
             show_root_heading: true
+            show_root_full_path: false
+            show_category_heading: true
+            show_signature_annotations: false
       watch:
         - hue
 
@@ -57,7 +63,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets:
       check_paths: true
-  - smarty
+  - smarty:
+      smart_quotes: false
   - sane_lists
   - toc:
       permalink: "🔗"
