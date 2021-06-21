@@ -35,9 +35,12 @@ theme:
 nav:
   - Introduction: index.md
   - "API Reference":
-      - Bridge: api_bridge.md
-      - Light: api_light.md
-  - cli.md
+      - Bridge: api/bridge.md
+      - Light: api/light.md
+  - "CLI Reference":
+      - Introduction: cli/index.md
+      - Bridge: cli/bridge.md
+      - Light: cli/light.md
   - Changelog: CHANGELOG.md
   - License: license.md
 
@@ -63,9 +66,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets:
       check_paths: true
+  - sane_lists
   - smarty:
       smart_quotes: false
-  - sane_lists
   - toc:
       permalink: "🔗"
 
