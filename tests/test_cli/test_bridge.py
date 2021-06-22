@@ -26,7 +26,7 @@ class TestBridgeCLI:
 
         res = runner.invoke(cli.app, ["bridge", "discover", "--help"])
         assert res.exit_code == 0
-        assert "Discover Hue Bridges available in this local network" in res.output
+        assert "Discover online Bridges in the local network" in res.output
 
         res = runner.invoke(cli.app, ["bridge", "discover"])
         assert res.exit_code == 0
@@ -66,7 +66,7 @@ class TestBridgeCLI:
 
         res = runner.invoke(cli.app, ["bridge", "get", "--help"])
         assert res.exit_code == 0
-        assert "Get the config of a Hue Bridge" in res.output
+        assert "Get the config of a Bridge" in res.output
 
         res = runner.invoke(cli.app, ["bridge", "get", "-i", self.ip, "-u", self.user])
         assert res.exit_code == 0
