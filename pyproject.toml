@@ -29,9 +29,9 @@ classifiers = [
 ]
 requires-python = "~=3.8"
 requires = [
-  "httpx ~=0.18.1",
+  "httpx ~=0.18.2",
   "typer[all] ~=0.3.2",
-  "rich ~=10.3.0",
+  "rich ~=10.4.0",
 ]
 
 [tool.flit.scripts]
@@ -52,6 +52,11 @@ dev = [
   "pre-commit",
   "tox",
 ]
+doc = [
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings"
+]
 
 [tool.flit.metadata.urls]
 Source = "https://github.com/nirantak/hue-api"
@@ -65,14 +70,3 @@ exclude = [".github"]
 [tool.black]
 line-length = 100
 target_version = ['py39']
-include = '\.pyi?$'
-exclude = '''
-/(
-  \.git
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | \.vscode
-  | __pycache__
-)/
-'''

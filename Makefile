@@ -1,4 +1,4 @@
-.PHONY: help clean clean-build clean-test clean-pyc lint test test-all coverage dist release install update versions
+.PHONY: help clean clean-build clean-test clean-pyc lint test test-all coverage dist release install update versions docs cli_docs
 .SILENT: help versions
 .DEFAULT_GOAL := help
 
@@ -33,7 +33,7 @@ help:
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
-	rm -rf build/ dist/ .eggs/
+	rm -rf build/ dist/ .eggs/ site/
 	find . -name '*.egg-info' -exec rm -rf {} +
 	find . -name '*.egg' -exec rm -f {} +
 
@@ -72,8 +72,22 @@ install: clean ## install the package to the active Python's site-packages
 	flit install
 
 update: ## update all listed packages
-	pip install -U -r requirements.txt
-	pip freeze --all > requirements.lock.txt
+	pip install -U -r requirements.dev.txt
+	pip freeze --all > requirements.txt
 
 versions: ## show installed versions of listed packages
-	pip freeze -r requirements.txt | $(SED) '/The following requirements were added by pip freeze/Q'
+	pip freeze -r requirements.dev.txt | $(SED) '/The following requirements were added by pip freeze/Q'
+
+docs: ## builds docs
+	@echo "Env: ${VIRTUAL_ENV}"
+	mkdocs build
+	. docs.venv/bin/activate && typer hue.cli utils docs --output docs/cli.md --name hue
+
+cli_docs: ## prepare env for generating CLI docs
+	python -m venv docs.venv \
+	&& . docs.venv/bin/activate \
+	&& which pip \
+	&& pip install -U pip wheel setuptools flit \
+	&& flit install --symlink \
+	&& pip install typer-cli==0.0.11 \
+	&& typer hue.cli utils docs --output docs/cli.md --name hue

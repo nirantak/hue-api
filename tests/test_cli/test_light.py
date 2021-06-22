@@ -56,7 +56,7 @@ class TestLightCLI:
 
         res = runner.invoke(cli.app, ["light", "get", "--help"])
         assert res.exit_code == 0
-        assert "Get the state of a Hue Light" in res.output
+        assert "Get the state of a Light" in res.output
 
         res = runner.invoke(
             cli.app, ["light", "get", str(self.num), "-i", self.ip, "-u", self.user]

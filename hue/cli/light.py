@@ -27,7 +27,7 @@ def get(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
 ):
-    """Get the state of a Hue Light"""
+    """Get the state of a Light"""
     light = Light(id, ip=ip, user=user)
     resp = asyncio.run(light.get_state())
     console.print(f"[{ip}] Light {id} State:\n{json.dumps(resp, indent=2)}")
