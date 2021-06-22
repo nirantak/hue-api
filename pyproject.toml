@@ -59,9 +59,9 @@ doc = [
 ]
 
 [tool.flit.metadata.urls]
+Documentation = "https://hue-api.nirantak.com/"
 Source = "https://github.com/nirantak/hue-api"
-Documentation = "https://github.com/nirantak/hue-api#readme"
-Tracker = "https://github.com/nirantak/hue-api/issues"
+Changelog = "https://hue-api.nirantak.com/CHANGELOG/"
 
 [tool.flit.sdist]
 include = ["tests", "LICENSE", "README.md", "CHANGELOG.md"]
