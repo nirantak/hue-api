@@ -18,3 +18,4 @@ tox
 mkdocs
 mkdocs-material
 mkdocstrings
+typer-cli

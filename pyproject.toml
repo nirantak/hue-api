@@ -48,7 +48,8 @@ test = [
 doc = [
   "mkdocs ~=1.2.1",
   "mkdocs-material ~=7.1.9",
-  "mkdocstrings ~=0.15.2"
+  "mkdocstrings ~=0.15.2",
+  "typer-cli ~=0.0.12",
 ]
 dev = [
   "black",

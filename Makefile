@@ -1,4 +1,4 @@
-.PHONY: help clean clean-build clean-test clean-pyc lint test test-all coverage dist release install update versions docs cli_docs
+.PHONY: help clean clean-build clean-test clean-pyc lint test test-all coverage dist release install update versions docs
 .SILENT: help versions
 .DEFAULT_GOAL := help
 
@@ -69,7 +69,7 @@ release: clean ## package and upload a release
 	ls -lh dist
 
 install: clean ## install the package to the active Python's site-packages
-	flit install
+	flit install --symlink
 
 update: ## update all listed packages
 	pip install -U -r requirements.dev.txt
@@ -79,15 +79,5 @@ versions: ## show installed versions of listed packages
 	pip freeze -r requirements.dev.txt | $(SED) '/The following requirements were added by pip freeze/Q'
 
 docs: ## builds docs
-	@echo "Env: ${VIRTUAL_ENV}"
 	mkdocs build
-	. docs.venv/bin/activate && typer hue.cli utils docs --output docs/cli.md --name hue
-
-cli_docs: ## prepare env for generating CLI docs
-	python -m venv docs.venv \
-	&& . docs.venv/bin/activate \
-	&& which pip \
-	&& pip install -U pip wheel setuptools flit \
-	&& flit install --symlink \
-	&& pip install typer-cli==0.0.11 \
-	&& typer hue.cli utils docs --output docs/cli.md --name hue
+	typer hue.cli utils docs --output docs/cli.md --name hue
