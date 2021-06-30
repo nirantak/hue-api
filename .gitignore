@@ -1,6 +1,7 @@
 .vscode
 CURRENT_CHANGELOG.txt
 .markdownlint.json
+Notes.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

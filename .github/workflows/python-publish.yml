@@ -27,7 +27,7 @@ jobs:
       - name: Get Changelog
         run: |
           awk -v ver=${GITHUB_REF#refs/*/} '
-            /^## v/ { if (p){exit}; if ($2 == ver){p=1; next} } p && NF
+            /^## [v/ { if (p){exit}; if ($2 ~ ver){p=1; next} } p && NF
           ' CHANGELOG.md > CURRENT_CHANGELOG.txt
           cat CURRENT_CHANGELOG.txt
 
