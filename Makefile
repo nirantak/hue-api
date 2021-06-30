@@ -73,7 +73,7 @@ install: clean ## install the package to the active Python's site-packages
 
 update: ## update all listed packages
 	pip install -U -r requirements.dev.txt
-	pip freeze --all > requirements.txt
+	pip freeze --all --exclude-editable --exclude hue-api > requirements.txt
 
 versions: ## show installed versions of listed packages
 	pip freeze -r requirements.dev.txt | $(SED) '/The following requirements were added by pip freeze/Q'
