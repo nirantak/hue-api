@@ -45,17 +45,17 @@ test = [
   "pytest-cov",
   "Faker",
 ]
+doc = [
+  "mkdocs ~=1.2.1",
+  "mkdocs-material ~=7.1.9",
+  "mkdocstrings ~=0.15.2"
+]
 dev = [
   "black",
   "coverage",
   "flake8",
   "pre-commit",
   "tox",
-]
-doc = [
-  "mkdocs",
-  "mkdocs-material",
-  "mkdocstrings"
 ]
 
 [tool.flit.metadata.urls]
