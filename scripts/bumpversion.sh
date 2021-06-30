@@ -8,6 +8,7 @@ GREP=grep
 SED=sed
 INIT_FILE=hue/__init__.py
 CHANGELOG_FILE=CHANGELOG.md
+PROJECT_NAME=nirantak/hue-api
 
 if [[ "$OSTYPE" =~ "darwin" ]]; then
   # GNU tools required, run `brew install grep sed` for MacOS
@@ -49,10 +50,10 @@ set -x
 git stash save
 
 $SED -i s/__version__\ =\ \"$CURRENT_VERSION\"/__version__\ =\ \"$NEW_VERSION\"/i $BASE_DIR/$INIT_FILE
-$SED -i s/\#\#\ Unreleased.*/\#\#\ v$NEW_VERSION\ \($(date '+%Y-%m-%d')\)/i $BASE_DIR/$CHANGELOG_FILE
+$SED -i s@\#\#\ Unreleased.*@\#\#\ \[v$NEW_VERSION\]\(https://github.com/$PROJECT_NAME/releases/tag/v$NEW_VERSION\)\ \($(date '+%Y-%m-%d')\)@i $BASE_DIR/$CHANGELOG_FILE
 
 git add $BASE_DIR/$INIT_FILE $BASE_DIR/$CHANGELOG_FILE
 git --no-pager diff --staged
 git commit -m "Bump version: $CURRENT_VERSION → $NEW_VERSION"
 git tag v$NEW_VERSION -m "Bump version: $CURRENT_VERSION → $NEW_VERSION"
-git stash pop
+git stash pop || true
