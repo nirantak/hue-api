@@ -31,7 +31,7 @@ requires-python = "~=3.8"
 requires = [
   "httpx ~=0.18.2",
   "typer[all] ~=0.3.2",
-  "rich ~=10.4.0",
+  "rich ~=10.6.0",
 ]
 
 [tool.flit.scripts]
@@ -46,8 +46,8 @@ test = [
   "Faker",
 ]
 doc = [
-  "mkdocs ~=1.2.1",
-  "mkdocs-material ~=7.1.9",
+  "mkdocs ~=1.2.2",
+  "mkdocs-material ~=7.1.11",
   "mkdocstrings ~=0.15.2",
   "typer-cli ~=0.0.12",
 ]
