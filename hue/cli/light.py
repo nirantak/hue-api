@@ -67,3 +67,16 @@ def toggle(
     light = Light(id, ip=ip, user=user)
     resp = asyncio.run(light.toggle())
     console.print(f"[{ip}] Light {id} Toggle:\n{json.dumps(resp, indent=2)}")
+
+
+@app.command()
+def brightness(
+    id: int = typer.Argument(1),
+    ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
+    user: str = typer.Option(..., "--user", "-u", envvar="HUE_BRIDGE_USER"),
+    brightness: int = typer.Option(..., "--brightness", "-b", min=1, max=255),
+):
+    """Set the brightness of a light"""
+    light = Light(id, ip=ip, user=user)
+    resp = asyncio.run(light.brightness(brightness))
+    console.print(f"[{ip}] Light {id} Toggle:\n{json.dumps(resp, indent=2)}")

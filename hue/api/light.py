@@ -153,3 +153,13 @@ class Light(Bridge):
         """
         await self.get_state()
         return await self.set_state({"on": not self.on})
+
+    async def brightness(self, brightness: int) -> list[dict[str, dict[str, Any]]]:
+        """
+        Power on the Light
+
+        Returns:
+            A list of dictionaries with key=success/error and value=state element changed
+        """
+        await self.get_state()
+        return await self.set_state({"on": self.on, "bri": brightness})
