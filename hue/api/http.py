@@ -22,3 +22,10 @@ async def put(url: str, data: dict[Any, Any]) -> httpx.Response:
     async with httpx.AsyncClient() as client:
         resp = await client.put(url, json=data)
     return resp
+
+
+async def post(url: str, data: dict[Any, Any]) -> httpx.Response:
+    resp = None
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, json=data)
+    return resp
