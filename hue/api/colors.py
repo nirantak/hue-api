@@ -1,3 +1,6 @@
+"""
+Source: https://github.com/benknight/hue-python-rgb-converter/blob/master/rgbxy/__init__.py
+"""
 import math
 import random
 from collections import namedtuple
