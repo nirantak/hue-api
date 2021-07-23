@@ -43,5 +43,9 @@ def create_user(
     ip: str = typer.Option(..., "--ip", "-i", envvar="HUE_BRIDGE_IP"),
     device_type: str = typer.Option(..., "--device-type", "-d"),
 ):
+    """Create a user on a Hue Bridge.
+
+    You must press the button on the Bridge.
+    """
     resp = asyncio.run(Bridge.create_user(ip, device_type))
     console.print(f"[{ip}] Bridge Config:\n{json.dumps(resp, indent=2)}")
