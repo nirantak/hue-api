@@ -49,3 +49,11 @@ class TestBridge:
         resp = await bridge.get_config()
         assert mock_http.call_count == 1
         assert resp == self.mock_resp["config"]
+
+    @patch("hue.api.http.post")
+    @pytest.mark.asyncio
+    async def test_bridge_create_user(self, mock_http):
+        device_type = "type#device"
+        await Bridge.create_user(ip=self.ip, device_type=device_type)
+        mock_http.assert_called_once_with(f"http://{self.ip}/api", {"devicetype": device_type})
+        assert mock_http.call_count == 1

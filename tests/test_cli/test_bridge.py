@@ -86,3 +86,16 @@ class TestBridgeCLI:
         assert res.exit_code == 2
         assert api_mock.call_count == 0
         assert "Error: Missing option '--user'" in res.output
+
+    @patch("hue.api.bridge.Bridge.create_user", return_value={})
+    def test_bridge_create_user(self, api_mock):
+        runner = CliRunner()
+
+        res = runner.invoke(cli.app, ["bridge", "create-user", "--help"])
+        assert res.exit_code == 0
+        assert "Create a user on a Hue Bridge" in res.output
+
+        res = runner.invoke(cli.app, ["bridge", "create-user", "-i", self.ip, "-d", "test#device"])
+        assert res.exit_code == 0
+        assert api_mock.call_count == 1
+        assert res.output == f"[{self.ip}] Bridge Config:\n{{}}\n"
