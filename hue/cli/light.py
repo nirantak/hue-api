@@ -78,5 +78,5 @@ def brightness(
 ):
     """Set the brightness of a light"""
     light = Light(id, ip=ip, user=user)
-    resp = asyncio.run(light.brightness(brightness))
+    resp = asyncio.run(light.set_brightness(brightness))
     console.print(f"[{ip}] Light {id} Toggle:\n{json.dumps(resp, indent=2)}")
