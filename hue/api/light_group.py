@@ -4,7 +4,6 @@ from copy import deepcopy
 
 from . import http
 from .bridge import Bridge
-from .light import Light
 
 
 class LightGroup(Bridge):
@@ -35,7 +34,10 @@ class LightGroup(Bridge):
         """
         self.name: str = name
         self.lights = None
-        self.group_info = None
+        self.group_state = None
+        self.on = None
+        self.id = None
+        self.brightness = None
         super().__init__(ip=ip, user=user)
 
     def __str__(self) -> str:
@@ -55,13 +57,19 @@ class LightGroup(Bridge):
             print(exc)
         return None
 
-    async def get_lights(self):
-        groups = (await http.get(f"{super().url}/groups")).json()
+    async def set_state(self, state):
+        return (await http.put(f"{super().url}/groups/{self.id}/action", state)).json()
+
+    async def get_state(self):
+        groups = await http.get_json(f"{super().url}/groups")
         try:
-            for group in groups.values():
+            for group_id, group in groups.items():
                 if group["name"] == self.name:
                     self.lights = [int(light_id) for light_id in group["lights"]]
-                    self.group_info = deepcopy(group)
+                    self.on = group["action"]["on"]
+                    self.id = group_id
+                    self.brightness = group["action"]["bri"]
+                    self.group_state = deepcopy(group)
                     return
             group_names = [repr(group["name"]) for group in groups.values()]
             print(
@@ -72,18 +80,24 @@ class LightGroup(Bridge):
             print(exc)
 
     async def get_info(self):
-        if self.group_info is None:
-            await self.get_lights()
-        return self.group_info
+        await self.get_state()
+        return self.group_state
+
+    async def power_on(self):
+        await self.get_state()
+        return await self.set_state({"on": True})
+
+    async def power_off(self):
+        await self.get_state()
+        return await self.set_state({"on": False})
 
     async def toggle(self):
-        if self.lights is None:
-            await self.get_lights()
-        if self.lights is None:
-            return
+        await self.get_state()
+        if self.on:
+            return await self.power_off()
+        else:
+            return await self.power_on()
 
-        response = []
-        for light_id in self.lights:
-            light = Light(light_id, ip=self.ip, user=self.user)
-            response.append(await light.toggle())
-        return response
+    async def set_brightness(self, brightness):
+        await self.get_state()
+        return await self.set_state({"bri": brightness})
