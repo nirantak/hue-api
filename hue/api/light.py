@@ -99,7 +99,9 @@ class Light(Bridge):
         Returns:
             A list of dictionaries with key=success/error and value=state element changed
         """
-        data = {"on": bool(state.get("on"))}
+        data = {}
+        if "on" in state:
+            data["on"] = bool(state["on"])
         for key in ["bri", "hue", "sat", "xy", "ct"]:
             value = state.get(key)
             if value:
@@ -164,4 +166,4 @@ class Light(Bridge):
             A list of dictionaries with key=success/error and value=state element changed
         """
         await self.get_state()
-        return await self.set_state({"on": self.on, "bri": brightness})
+        return await self.set_state({"bri": brightness})
