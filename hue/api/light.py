@@ -40,6 +40,7 @@ class Light(Bridge):
         """
         self.id: int = id
         self.on: bool = None
+        self.brightness: int = None
         self.info: dict[str, Any] = {}
         self.state: dict[str, Any] = {}
         self.saved_state: dict[str, Any] = {}
@@ -78,6 +79,7 @@ class Light(Bridge):
         resp = await self.get_info()
         self.state = resp["state"]
         self.on = resp["state"]["on"]
+        self.brightness = resp["state"]["bri"]
         return self.state
 
     async def set_state(self, state: dict[str, Any]) -> list[dict[str, dict[str, Any]]]:
