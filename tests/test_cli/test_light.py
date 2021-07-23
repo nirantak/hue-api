@@ -121,3 +121,18 @@ class TestLightCLI:
         assert res.exit_code == 0
         assert api_mock.call_count == 1
         assert res.output == f"[{self.ip}] Light {self.num} Toggle:\n{{}}\n"
+
+    @patch("hue.api.light.Light.set_brightness", return_value={})
+    def test_light_brightness(self, api_mock):
+        runner = CliRunner()
+
+        res = runner.invoke(cli.app, ["light", "brightness", "--help"])
+        assert res.exit_code == 0
+        assert "Set the brightness of a light" in res.output
+
+        res = runner.invoke(
+            cli.app, ["light", "brightness", str(self.num), "-b", 1, "-i", self.ip, "-u", self.user]
+        )
+        assert res.exit_code == 0
+        assert api_mock.call_count == 1
+        assert res.output == f"[{self.ip}] Light {self.num} Brightness:\n{{}}\n"
