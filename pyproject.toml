@@ -47,7 +47,7 @@ test = [
 ]
 doc = [
   "mkdocs ~=1.2.2",
-  "mkdocs-material ~=7.1.11",
+  "mkdocs-material ~=7.2.1",
   "mkdocstrings ~=0.15.2",
   "typer-cli ~=0.0.12",
 ]
