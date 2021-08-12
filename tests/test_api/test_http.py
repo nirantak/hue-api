@@ -38,3 +38,12 @@ class TestHttp:
         mock_client.assert_called_once_with(self.url, json=self.mock_json)
         assert mock_client.call_count == 1
         assert resp == self.mock_resp
+
+    @patch("httpx.AsyncClient.post")
+    @pytest.mark.asyncio
+    async def test_http_post(self, mock_client):
+        mock_client.return_value = self.mock_resp
+        resp = await http.post(self.url, self.mock_json)
+        mock_client.assert_called_once_with(self.url, json=self.mock_json)
+        assert mock_client.call_count == 1
+        assert resp == self.mock_resp
