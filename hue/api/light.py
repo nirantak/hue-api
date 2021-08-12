@@ -97,8 +97,8 @@ class Light(Bridge):
         Returns:
             A list of dictionaries with key=success/error and value=state element changed
         """
-        data = {"on": bool(state.get("on"))}
-        for key in ["bri", "hue", "sat", "xy", "ct"]:
+        data = {}
+        for key in ["on", "bri", "hue", "sat", "xy", "ct"]:
             value = state.get(key)
             if value:
                 data[key] = value
