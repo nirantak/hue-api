@@ -1,5 +1,5 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >=3,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
@@ -31,7 +31,7 @@ requires-python = "~=3.8"
 requires = [
   "httpx ~=0.18.2",
   "typer[all] ~=0.3.2",
-  "rich ~=10.6.0",
+  "rich ~=10.7.0",
 ]
 
 [tool.flit.scripts]
@@ -47,7 +47,7 @@ test = [
 ]
 doc = [
   "mkdocs ~=1.2.2",
-  "mkdocs-material ~=7.2.1",
+  "mkdocs-material ~=7.2.4",
   "mkdocstrings ~=0.15.2",
   "typer-cli ~=0.0.12",
 ]
