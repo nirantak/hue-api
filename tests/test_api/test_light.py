@@ -54,16 +54,18 @@ class TestLight:
         assert light.state == self.mock_resp["state"]
         assert light.on == self.mock_resp["state"]["on"]
 
+    @pytest.mark.parametrize("state", [None, {"bri": 1}])
     @patch("hue.api.http.put")
     @patch("hue.api.light.Light.get_state")
     @pytest.mark.asyncio
-    async def test_light_set_state(self, mock_http_get, mock_http_put):
+    async def test_light_set_state(self, mock_http_get, mock_http_put, state):
         mock_http_put.return_value.json = MagicMock(return_value=self.mock_resp)
         light = Light(self.num, ip=self.ip, user=self.user)
-        resp = await light.set_state(self.mock_resp["state"])
+        state = self.mock_resp["state"] if state is None else state
+        resp = await light.set_state(state)
         mock_http_put.assert_called_once_with(
             f"http://{self.ip}/api/{self.user}/lights/{self.num}/state",
-            self.mock_resp["state"],
+            state,
         )
         assert mock_http_put.call_count == 1
         assert mock_http_get.call_count == 1
@@ -112,6 +114,19 @@ class TestLight:
         light.on = power
         resp = await light.toggle()
         mock_http_set.assert_called_once_with({"on": not power})
+        assert mock_http_get.call_count == 1
+        assert mock_http_set.call_count == 1
+        assert resp == self.mock_resp
+
+    @pytest.mark.parametrize("brightness", [1, 128, 255])
+    @patch("hue.api.light.Light.set_state")
+    @patch("hue.api.light.Light.get_state")
+    @pytest.mark.asyncio
+    async def test_light_brightness(self, mock_http_get, mock_http_set, brightness):
+        mock_http_set.return_value = self.mock_resp
+        light = Light(self.num, ip=self.ip, user=self.user)
+        resp = await light.set_brightness(brightness)
+        mock_http_set.assert_called_once_with({"bri": brightness})
         assert mock_http_get.call_count == 1
         assert mock_http_set.call_count == 1
         assert resp == self.mock_resp

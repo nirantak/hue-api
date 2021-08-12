@@ -2,4 +2,4 @@
 
 __version__ = "0.4.3"
 
-from hue.api import Bridge, Color, Light
+from hue.api import Bridge, Color, Light, LightGroup

@@ -73,3 +73,9 @@ class Bridge:
         """
         resp = await self.get_info()
         return resp["config"]
+
+    @staticmethod
+    async def create_user(ip: str, device_type: str):
+        resp = await http.post(f"http://{ip}/api", {"devicetype": device_type})
+        json = resp.json()
+        return json
