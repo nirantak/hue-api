@@ -5,6 +5,9 @@ flit
 httpx
 typer[all]
 rich
+mkdocs
+mkdocs-material
+mkdocstrings
 pytest
 pytest-asyncio
 pytest-mock
@@ -15,7 +18,3 @@ coverage
 flake8
 pre-commit
 tox
-mkdocs
-mkdocs-material
-mkdocstrings
-typer-cli
