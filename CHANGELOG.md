@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See all releases on [GitHub](https://github.com/nirantak/hue-api/releases) or [PyPI](https://pypi.org/project/hue-api/#history).
 
+## Unreleased
+
+- Update dependencies
+- Add robots.txt for docs site
+
 ## [v0.4.4](https://github.com/nirantak/hue-api/releases/tag/v0.4.4) (2021-08-12)
 
 - Update dependencies
