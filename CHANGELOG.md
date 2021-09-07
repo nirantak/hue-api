@@ -9,6 +9,7 @@ See all releases on [GitHub](https://github.com/nirantak/hue-api/releases) or [P
 
 - Update dependencies
 - Add robots.txt for docs site
+- Fix setting of light power off state (when `False` is passed)
 
 ## [v0.4.4](https://github.com/nirantak/hue-api/releases/tag/v0.4.4) (2021-08-12)
 

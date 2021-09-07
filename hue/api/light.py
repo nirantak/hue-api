@@ -100,7 +100,7 @@ class Light(Bridge):
         data = {}
         for key in ["on", "bri", "hue", "sat", "xy", "ct"]:
             value = state.get(key)
-            if value:
+            if value is not None:
                 data[key] = value
         resp = await http.put(f"{self.url}/state", data)
         await self.get_state()
