@@ -1,0 +1,3 @@
+Contact: https://nirantak.dev
+Expires: 2025-01-01T00:00:00.000Z
+Preferred-Languages: en, hi
