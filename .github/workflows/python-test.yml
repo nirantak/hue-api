@@ -26,10 +26,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+          cache: "pip"
 
       - name: Install Dependencies
         run: |
-          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade pip wheel setuptools
           python -m pip install --upgrade tox
 
       - name: Test with Tox
