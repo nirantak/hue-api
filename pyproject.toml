@@ -29,9 +29,9 @@ classifiers = [
 ]
 requires-python = "~=3.8"
 requires = [
-  "httpx ~=0.20.0",
+  "httpx ~=0.21.1",
   "typer[all] ~=0.4.0",
-  "rich ~=10.12.0",
+  "rich ~=10.14.0",
 ]
 
 [tool.flit.scripts]
@@ -69,4 +69,4 @@ exclude = [".github"]
 
 [tool.black]
 line-length = 100
-target_version = ['py39']
+target_version = ['py310']
