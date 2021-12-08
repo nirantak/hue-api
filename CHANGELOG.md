@@ -7,7 +7,7 @@ See all releases on [GitHub](https://github.com/nirantak/hue-api/releases) or [P
 
 ## Unreleased
 
-- Update dependencies
+- Update Python to 3.10.1 and package dependencies
 - Enable caching pip dependencies in Github Actions
 
 ## [v0.4.6](https://github.com/nirantak/hue-api/releases/tag/v0.4.6) (2021-11-06)
