@@ -29,9 +29,9 @@ classifiers = [
 ]
 requires-python = "~=3.8"
 requires = [
-  "httpx ~=0.21.1",
+  "httpx ~=0.21.3",
   "typer[all] ~=0.4.0",
-  "rich ~=10.15.2",
+  "rich ~=11.0.0",
 ]
 
 [tool.flit.scripts]
@@ -40,8 +40,8 @@ hue = "hue.cli:app"
 [tool.flit.metadata.requires-extra]
 doc = [
   "mkdocs ~=1.2.3",
-  "mkdocs-material ~=8.0.5",
-  "mkdocstrings ~=0.16.2",
+  "mkdocs-material ~=8.1.8",
+  "mkdocstrings ~=0.17.0",
 ]
 test = [
   "pytest ~=6.2.5",
