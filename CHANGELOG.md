@@ -5,10 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See all releases on [GitHub](https://github.com/nirantak/hue-api/releases) or [PyPI](https://pypi.org/project/hue-api/#history).
 
-## Unreleased
+## [v0.4.7](https://github.com/nirantak/hue-api/releases/tag/v0.4.7) (2022-01-31)
 
 - Update Python to 3.10.2 and package dependencies
 - Enable caching pip dependencies in Github Actions
+- Add more options in the `Light.set_state()` method
 
 ## [v0.4.6](https://github.com/nirantak/hue-api/releases/tag/v0.4.6) (2021-11-06)
 
