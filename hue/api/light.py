@@ -12,7 +12,7 @@ class Light(Bridge):
 
     Example:
         >>> from hue import Light
-        >>> bridge = Light(1, ip="192.168.1.10", user="xxxx")
+        >>> light = Light(1, ip="192.168.1.10", user="xxxx")
 
     Attributes:
         id: ID of the Hue Light
@@ -82,23 +82,48 @@ class Light(Bridge):
 
     async def set_state(self, state: dict[str, Any]) -> list[dict[str, dict[str, Any]]]:
         """
-        Set the state of the Light
+        Set the state of the Light.
+        See [this link](https://developers.meethue.com/develop/hue-api/lights-api/#set-light-state)
+        for details
 
         Arguments:
             state: The state to set the light to, it may consist of the following keys:
 
-                    "on": bool,
-                    "bri": int,
-                    "hue": int,
-                    "sat": int,
-                    "xy": list[float, float],
-                    "ct": int,
+                    "on":             bool,
+                    "bri":            int,                # 1 to 254
+                    "hue":            int,                # 0 to 65535
+                    "sat":            int,                # 0 to 254
+                    "xy":             list[float, float], # [0-1.0, 0-1.0]
+                    "ct":             int,                # 153 to 500
+                    "alert":          string,             # "none", "select", "lselect"
+                    "effect":         string,             # "none", "colorloop"
+                    "transitiontime": int,
+                    "bri_inc":        int,                # -254 to 254
+                    "sat_inc":        int,                # -254 to 254
+                    "hue_inc":        int,                # -65534 to 65534
+                    "ct_inc":         int,                # -65534 to 65534
+                    "xy_inc":         list[float, float],
 
         Returns:
             A list of dictionaries with key=success/error and value=state element changed
         """
         data = {}
-        for key in ["on", "bri", "hue", "sat", "xy", "ct"]:
+        for key in [
+            "on",
+            "bri",
+            "hue",
+            "sat",
+            "xy",
+            "ct",
+            "alert",
+            "effect",
+            "transitiontime",
+            "bri_inc",
+            "sat_inc",
+            "hue_inc",
+            "ct_inc",
+            "xy_inc",
+        ]:
             value = state.get(key)
             if value is not None:
                 data[key] = value
