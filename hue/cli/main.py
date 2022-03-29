@@ -13,4 +13,4 @@ app.add_typer(light.app, name="light", help="Interact with the Hue Lights API")
 @app.command()
 def version():
     """Show version of hue-api installed"""
-    console.print(f"hue-api version: {__version__}")
+    console.print(f"hue-api version: [bold cyan]{__version__}[/]")
