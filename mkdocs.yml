@@ -70,9 +70,6 @@ markdown_extensions:
       permalink: "🔗"
 
 extra:
-  analytics:
-    provider: google
-    property: G-KZEZ7SKHJL
   social:
     - icon: fontawesome/brands/github
       link: "https://github.com/nirantak/hue-api"

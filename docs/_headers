@@ -7,3 +7,6 @@
 
 https://:project.pages.dev/*
   X-Robots-Tag: noindex, nofollow, nosnippet
+
+https://:hash.:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, nosnippet
