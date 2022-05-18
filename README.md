@@ -6,7 +6,6 @@
 [![Publish Package](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml/badge.svg)](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml)
 ![Python Versions](https://img.shields.io/pypi/pyversions/hue-api)
 [![Package Version](https://img.shields.io/pypi/v/hue-api)](https://pypi.org/project/hue-api/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14cacafe-1ea5-424c-93dd-17d51d9e9804/deploy-status)](https://hue-api.nirantak.com/)
 
 Documentation: [hue-api.nirantak.com](https://hue-api.nirantak.com/)
 
