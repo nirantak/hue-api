@@ -7,7 +7,7 @@ typer[all]
 rich
 mkdocs
 mkdocs-material
-mkdocstrings
+mkdocstrings[python-legacy]
 pytest
 pytest-asyncio
 pytest-mock
