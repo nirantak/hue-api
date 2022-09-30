@@ -43,12 +43,10 @@ class TestLightCLI:
         res = runner.invoke(cli.app, ["light", "info"])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--ip'" in res.output
 
         res = runner.invoke(cli.app, ["light", "info", "-i", self.ip])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--user'" in res.output
 
     @patch("hue.api.light.Light.get_state", return_value={})
     def test_light_state(self, api_mock):
@@ -72,12 +70,10 @@ class TestLightCLI:
         res = runner.invoke(cli.app, ["light", "get"])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--ip'" in res.output
 
         res = runner.invoke(cli.app, ["light", "get", "-i", self.ip])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--user'" in res.output
 
     @patch("hue.api.light.Light.power_on", return_value={})
     def test_light_power_on(self, api_mock):

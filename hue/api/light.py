@@ -10,9 +10,11 @@ class Light(Bridge):
     """
     Interact with the Hue Lights API
 
-    Example:
+    Examples:
         >>> from hue import Light
         >>> light = Light(1, ip="192.168.1.10", user="xxxx")
+        >>> print(light.url)
+        http://192.168.1.10/api/xxxx/lights/1
 
     Attributes:
         id: ID of the Hue Light

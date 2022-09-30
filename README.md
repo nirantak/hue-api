@@ -1,6 +1,6 @@
 # Hue API
 
-> _Async API for controlling Hue Lights_
+> _Async API and CLI tools for interacting with Hue Lights_
 
 [![Python Tests](https://github.com/nirantak/hue-api/actions/workflows/python-test.yml/badge.svg)](https://github.com/nirantak/hue-api/actions/workflows/python-test.yml)
 [![Publish Package](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml/badge.svg)](https://github.com/nirantak/hue-api/actions/workflows/python-publish.yml)

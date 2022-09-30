@@ -7,7 +7,9 @@ See all releases on [GitHub](https://github.com/nirantak/hue-api/releases) or [P
 
 ## Unreleased
 
-- Update Python to 3.10.4 and package dependencies
+- Update Python to 3.10.7 and package dependencies
+- Upgrade typer, the CLI now uses rich for better error reporting
+- Upgrade mkdocs plugins for docs UI
 
 ## [v0.4.7](https://github.com/nirantak/hue-api/releases/tag/v0.4.7) (2022-01-31)
 

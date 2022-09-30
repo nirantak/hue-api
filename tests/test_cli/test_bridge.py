@@ -53,12 +53,10 @@ class TestBridgeCLI:
         res = runner.invoke(cli.app, ["bridge", "info"])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--ip'" in res.output
 
         res = runner.invoke(cli.app, ["bridge", "info", "-i", self.ip])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--user'" in res.output
 
     @patch("hue.api.bridge.Bridge.get_config", return_value={})
     def test_bridge_config(self, api_mock):
@@ -80,9 +78,7 @@ class TestBridgeCLI:
         res = runner.invoke(cli.app, ["bridge", "get"])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--ip'" in res.output
 
         res = runner.invoke(cli.app, ["bridge", "get", "-i", self.ip])
         assert res.exit_code == 2
         assert api_mock.call_count == 0
-        assert "Error: Missing option '--user'" in res.output

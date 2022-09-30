@@ -9,9 +9,11 @@ class Bridge:
     """
     Interact with the Hue Bridge API
 
-    Example:
+    Examples:
         >>> from hue import Bridge
         >>> bridge = Bridge(ip="192.168.1.10", user="xxxx")
+        >>> print(bridge.url)
+        http://192.168.1.10/api/xxxx
 
     Attributes:
         ip: IP address of the Hue Bridge

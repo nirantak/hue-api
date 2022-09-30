@@ -4,7 +4,9 @@ repo_url: https://github.com/nirantak/hue-api
 repo_name: nirantak/hue-api
 edit_uri: ""
 site_author: Nirantak Raghav
-site_description: Async API for controlling Hue Lights
+site_description: Async API and CLI tools for interacting with Hue Lights
+watch:
+  - hue
 
 theme:
   name: material
@@ -28,9 +30,12 @@ theme:
   favicon: images/home-lightbulb.ico
   locale: en
   features:
+    - toc.follow
     - navigation.instant
     - navigation.expand
     - navigation.top
+    - navigation.indexes
+    - search.suggest
 
 nav:
   - Introduction: index.md
@@ -47,14 +52,16 @@ plugins:
       default_handler: python
       handlers:
         python:
-          rendering:
+          options:
+            line_length: 80
             show_source: true
             show_root_heading: true
             show_root_full_path: false
+            merge_init_into_class: true
+            group_by_category: true
             show_category_heading: true
-            show_signature_annotations: false
-      watch:
-        - hue
+            separate_signature: true
+            show_signature_annotations: true
 
 markdown_extensions:
   - admonition
